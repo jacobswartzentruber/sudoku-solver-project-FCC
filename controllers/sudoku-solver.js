@@ -42,7 +42,48 @@ class SudokuSolver {
   }
 
   solve(puzzleString) {
+    let solvedString = puzzleString;
+    let possibleNums = {};
     
+    puzzleString.split('').forEach((num, i) => {
+        if(num === '.') possibleNums[i] = ['1','2','3','4','5','6','7','8','9'];
+      });
+
+    let madeChange = true;
+
+    while(madeChange){
+      madeChange = false;
+
+      Object.keys(possibleNums).forEach((i) => {
+          let r = Math.floor(i/9);
+          let c = i%9;
+
+          for(let j=0; j < possibleNums[i].length; j++){
+            let num = possibleNums[i][j];
+            let rowFree = this.checkRowPlacement(solvedString, r, c, num);
+            let colFree = this.checkColPlacement(solvedString, r, c, num);
+            let regionFree = this.checkRegionPlacement(solvedString, r, c, num);
+
+            if(!rowFree || !colFree || !regionFree){
+              madeChange = true;
+              possibleNums[i].splice(j, 1);
+            }
+          };
+
+          if(possibleNums[i].length === 1){
+            console.log("found num: "+possibleNums[i][0]+" at index: "+i);
+            solvedString = solvedString.substring(0, i) + possibleNums[i][0] + solvedString.substring(parseInt(i)+1);
+            delete possibleNums[i];
+          }
+      });
+
+      Object.keys(possibleNums).forEach((i) => {
+
+      });
+    }
+
+    console.log(solvedString);
+    return solvedString;
   }
 }
 
