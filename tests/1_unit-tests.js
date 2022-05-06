@@ -4,8 +4,13 @@ const assert = chai.assert;
 const Solver = require('../controllers/sudoku-solver.js');
 let solver = new Solver;
 
+const PuzzleSolutions = require('../controllers/puzzle-strings.js');
+let puzzleSolutions = PuzzleSolutions.puzzlesAndSolutions;
+
 suite('UnitTests', () => {
-  test("testing", function(){
-    solver.solve('..9..5.1.85.4....2432......1...69.83.9.....6.62.71...9......1945....4.37.4.3..6..');
-  })
+  test("Test solve function against sample puzzle strings", function(){
+    puzzleSolutions.forEach(puzzle => {
+      assert.equal(solver.solve(puzzle[0]).solution, puzzle[1], 'solved puzzle does not match expected solved string')
+    });
+  });
 });
