@@ -13,6 +13,7 @@ suite('UnitTests', () => {
   const invalidPuzzle = '125452.84.163.12.7....5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.';
   const badCharPuzzle = 'alsiekdiwodkflwieskdoqkdifieoakfksla;aowrkflsjfskdowkelfa;sofiwekfjsidof;alsifaia';
   const not81Puzzle = '123456789';
+  const incompletePuzzle = '1................................................................................';
 
   test('Logic handles a puzzle string of 81 characters', function(){
     assert.isObject(solver.validate(validPuzzle), 'validate should return an object');
@@ -70,22 +71,17 @@ suite('UnitTests', () => {
   });
 
   test('Invalid puzzle strings fail the solver', function(){
-    assert.isObject(solver.solve(badCharPuzzle), 'badCharPuzzle solve puzzle should return an object');
-    assert.property(solver.solve(badCharPuzzle), 'error', 'badCharPuzzle solve puzzle should have an error property');
-    assert.notProperty(solver.solve(badCharPuzzle), 'solution', 'badCharPuzzle solve puzzle should not have a solution property');
-    assert.equal(solver.solve(badCharPuzzle).error, 'Invalid characters in puzzle', 'badCharPuzzle solve puzzle should return "Invalid characters in puzzle"');
-    
-    assert.isObject(solver.solve(not81Puzzle), 'not81Puzzle solve puzzle should return an object');
-    assert.property(solver.solve(not81Puzzle), 'error', 'not81Puzzle solve puzzle should have an error property');
-    assert.notProperty(solver.solve(not81Puzzle), 'solution', 'not81Puzzle solve puzzle should not have a solution property');
-    assert.equal(solver.solve(not81Puzzle).error, 'Expected puzzle to be 81 characters long', 'not81Puzzle solve puzzle should return "Invalid characters in puzzle"');
-  });
-
-  test('Solver returns the expected solution for an incomplete puzzle', function(){
     assert.isObject(solver.solve(invalidPuzzle), 'invalid solve puzzle should return an object');
     assert.property(solver.solve(invalidPuzzle), 'error', 'invalid solve puzzle should have an error property');
     assert.notProperty(solver.solve(invalidPuzzle), 'solution', 'invalid solve puzzle should not have a solution property');
     assert.equal(solver.solve(invalidPuzzle).error, 'Puzzle cannot be solved', 'invalid solve puzzle should return "Puzzle cannot be solved"');
+  });
+
+  test('Solver returns the expected solution for an incomplete puzzle', function(){
+    assert.isObject(solver.solve(incompletePuzzle), 'incomplete puzzle solve puzzle should return an object');
+    assert.property(solver.solve(incompletePuzzle), 'error', 'incomplete puzzle solve puzzle should have an error property');
+    assert.notProperty(solver.solve(incompletePuzzle), 'solution', 'incomplete puzzle solve puzzle should not have a solution property');
+    assert.equal(solver.solve(incompletePuzzle).error, 'Puzzle cannot be solved', 'incomplete puzzle solve puzzle should return "Puzzle cannot be solved"');
   });
 
 });
