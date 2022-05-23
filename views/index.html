@@ -7,8 +7,11 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link id="favicon" rel="icon" href="https://cdn.freecodecamp.org/universal/favicons/favicon-32x32.png" type="image/x-icon">
-	<link rel="stylesheet" href="../public/style.css" type="text/css" />
+  <link id="favicon" rel="icon" href="https://cdn.freecodecamp.org/universal/favicons/favicon-32x32.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../public/style.css" type="text/css" />
 </head>
 
 <body>
@@ -17,7 +20,11 @@
 	</header>
 	<div class="container">
 		<div class="form-container">
+      
 			<form id="solve-form">
+        <p class="solve-description">
+          Please input a sudoku puzzle string below using numbers 1-9 and '.'s for empty squares. Clicking the solve button will solve the Sudoku puzzle or return applicable server response error
+        </p>
 				<textarea
           rows="10"
           cols="85"
@@ -25,15 +32,23 @@
           name="puzzle"
         ></textarea>
         <br />
-        <input type="button" value="Solve" id="solve-button"/>
+        <input type="button" value="Solve" id="solve-button" class="input-button"/>
         <div id="error-msg"></div>
         </form>
         <form id="check-form">
+          <p class="check-description">
+            Checks to see if a number at a specific coordinate conflicts with the current state of the board 
+          </p>
           <p>Coordinate (A1): <input id="coord" class="checker" type="text" name="coordinate"></p>
           <p>Value (1-9): <input class="checker" type="text" id="val" name="value"></p>
-          <input type="button" id="check-button" value="Check Placement">
+          <input type="button" id="check-button" class="input-button" value="Check Placement">
         </form>
-        <span id="error"></span>
+
+        <div class="error-container">
+          <p>Server Response (JSON object):</p>
+          <p id="error">  </p>
+        </div>
+        
       </div>
       
         <div id="sudoku-grid-container">

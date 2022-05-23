@@ -1,23 +1,51 @@
+* {
+  font-family: 'Nunito', sans-serif;
+}
+
+header {
+  text-align: center;
+}
+
 code {
-  background: #d0d0d5;
+  background: #99D19C;
 }
 
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 20px;
+  gap: 20px;
 }
 
 .form-container {
   max-width: 95%;
-  align-self: flex-start;
+}
+
+#solve-form {
+  background-color: #D0EEF0;
+  border-radius: 10px;
+  padding: 4px 20px 20px 20px;
 }
 
 textarea {
-  width: 100%;
+  width: 98%;
+  margin-bottom: 12px;
 }
 
-#user-stories {
-  font-size: 1.2em;
+#check-form {
+  background-color: #D0EEF0;
+  border-radius: 10px;
+  padding: 4px 20px 20px 20px;
+  margin-top: 20px;
+}
+
+.error-container {
+  background-color: #D0EEF0;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 20px;
 }
 
 #error-msg {
@@ -27,9 +55,12 @@ textarea {
 }
 
 #sudoku-grid-container {
+  background: #D0EEF0;
+  border-radius: 10px;
   display: flex;
   flex-direction: row;
-  margin-left: 20px;
+  justify-content: center;
+  padding: 4px 20px 20px 0px;
 }
 
 #sudoku-grid {
@@ -85,6 +116,23 @@ td {
   text-align: center;
 }
 
+.input-button {
+  background-color: #2A6561;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.input-button:hover {
+  background-color: #99D19C;
+  color: black;
+}
+
 .C1, .C2, .C3, .C4, .C5, .C6, .C7, .C8, .C9, .F1, .F2, .F3, .F4, .F5, .F6, .F7, .F8, .F9 {
   border-bottom: 3px solid;
 }
@@ -100,5 +148,6 @@ td {
 
   .form-container {
     align-self: center;
+    max-width: 50%;
   }
 }
